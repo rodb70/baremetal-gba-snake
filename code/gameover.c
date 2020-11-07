@@ -1,4 +1,5 @@
-#include "gameOver.h"
+#include "gameover.h"
+
 #include "drawing.h"
 #include "text.h"
 #include "input.h"

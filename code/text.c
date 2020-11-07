@@ -1,7 +1,7 @@
 #include "text.h"
 
 //from coranac.com
-const unsigned int fontTiles[192]=
+const unsigned int fontTiles[ 192 ] =
 {
     0x00000000, 0x00000000, 0x18181818, 0x00180018, 0x00003636, 0x00000000, 0x367F3636, 0x0036367F,
     0x3C067C18, 0x00183E60, 0x1B356600, 0x0033566C, 0x6E16361C, 0x00DE733B, 0x000C1818, 0x00000000,
@@ -31,35 +31,35 @@ const unsigned int fontTiles[192]=
     0x18181818, 0x00181818, 0x3018180C, 0x000C1818, 0x003B6E00, 0x00000000, 0x00000000, 0x00000000,
 };
 
-void drawString(char* msg, COLOR textCol, int x, int y)
+void drawString(char *msg, COLOR textCol, int x, int y)
 {
     int c = *msg++;
-    uint16* dst = &vid_mem[y * SCREEN_WIDTH + x];
+    uint16_t *dst = &vid_mem[y * SCREEN_WIDTH + x];
 
-    while (c != '\0')
+    while( c != '\0' )
     {
-        if(c == '\n')       // line break
+        if( c == '\n' ) // line break
         {
-            dst += SCREEN_WIDTH*8;
-            x=0;
+            dst += SCREEN_WIDTH * 8;
+            x = 0;
         }
-        else                // normal character
+        else // normal character
         {
 
-            uint32 row;
+            uint32_t row;
             // (3) point to glyph; each row is one byte
 
-            uint8* glyphBytes = (uint8*)&fontTiles[ 2 * (c - 32)];
+            uint8_t *glyphBytes = (uint8_t*) &fontTiles[2 * (c - 32)];
 
-            for(int iy = 0; iy < 8; iy++)
+            for( int iy = 0; iy < 8; iy++ )
             {
                 row = glyphBytes[iy];
 
-                for(int ix = x; row>0; row >>= 1, ix++)
+                for( int ix = x; row > 0; row >>= 1, ix++ )
                 {
-                    if(row & 1)
+                    if( row & 1 )
                     {
-                        dst[(y +iy) * SCREEN_WIDTH + (x + ix)] = textCol;
+                        dst[(y + iy) * SCREEN_WIDTH + (x + ix)] = textCol;
                     }
                 }
             }

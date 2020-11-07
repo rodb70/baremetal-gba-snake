@@ -1,11 +1,11 @@
-#include "snake.h"
-#include "drawing.h"
 #include <stdlib.h>
-#include "text.h"
 #include <string.h>
 
+#include "snake.h"
+#include "drawing.h"
+#include "text.h"
 
-void InitSnake(Snake* snake, int startX, int startY, int maxLen)
+void InitSnake(Snake *snake, int startX, int startY, int maxLen)
 {
     snake->head.x = startX;
     snake->head.y = startY;
@@ -18,17 +18,17 @@ void InitSnake(Snake* snake, int startX, int startY, int maxLen)
     snake->tail = &snake->head;
     snake->tail->prev = NULL;
 
-    memset(&snake->freeNodes[0], 0, sizeof(SnakeNode) * NUM_CELLS_X * NUM_CELLS_Y);
+    memset( &snake->freeNodes[0], 0, sizeof(SnakeNode) * NUM_CELLS_X * NUM_CELLS_Y );
 }
 
-int UpdateSnake(Snake* s)
+int UpdateSnake(Snake *s)
 {
-    SnakeNode* curNode = s->tail;
+    SnakeNode *curNode = s->tail;
 
-    while(curNode != NULL)
+    while( curNode != NULL )
     {
-        SnakeNode* prev = curNode->prev;
-        if (prev != NULL)
+        SnakeNode *prev = curNode->prev;
+        if( prev != NULL )
         {
             curNode->x = prev->x;
             curNode->y = prev->y;
@@ -40,7 +40,7 @@ int UpdateSnake(Snake* s)
             int newY = curNode->y + (s->yVel - 1);
 
             //are we about to collide with ourselves?
-            if (getCellValue(newX, newY))
+            if( getCellValue( newX, newY ) )
             {
                 return 0;
             }
@@ -48,9 +48,9 @@ int UpdateSnake(Snake* s)
             curNode->x = newX;
             curNode->y = newY;
 
-            s->lastXMov =  (s->xVel);
+            s->lastXMov = (s->xVel);
             s->lastYMov = (s->yVel);
-            setCellValue(newX,newY,1);
+            setCellValue( newX, newY, 1 );
 
             break;
         }
@@ -59,9 +59,9 @@ int UpdateSnake(Snake* s)
     return 1;
 }
 
-void AddNode(Snake* s)
+void AddNode(Snake *s)
 {
-    SnakeNode* newTail = &s->freeNodes[s->length-1];
+    SnakeNode *newTail = &s->freeNodes[s->length - 1];
     newTail->x = s->tail->x;
     newTail->y = s->tail->y;
     newTail->prev = s->tail;
@@ -69,41 +69,35 @@ void AddNode(Snake* s)
     s->length++;
 }
 
-void DrawLooseNode(SnakeNode* n, int gridOffset, int nodeSize)
+void DrawLooseNode(SnakeNode *n, int gridOffset, int nodeSize)
 {
-    drawRect2(gridOffset + n->x * nodeSize,
-              gridOffset + n->y * nodeSize,
-              nodeSize, nodeSize, COL_YELLOW);
+    drawRect2( gridOffset + n->x * nodeSize, gridOffset + n->y * nodeSize, nodeSize, nodeSize, COL_YELLOW );
 
 }
 
-void ClearLooseNode(SnakeNode* n, int gridOffset, int nodeSize)
+void ClearLooseNode(SnakeNode *n, int gridOffset, int nodeSize)
 {
-    drawRect2(gridOffset + n->x * nodeSize,
-              gridOffset + n->y * nodeSize,
-              nodeSize, nodeSize, COL_BLACK);
+    drawRect2( gridOffset + n->x * nodeSize, gridOffset + n->y * nodeSize, nodeSize, nodeSize, COL_BLACK );
 
 }
 
-
-int IsCollidingWithNode(Snake* s, SnakeNode* node)
+int IsCollidingWithNode(Snake *s, SnakeNode *node)
 {
     return s->head.x == node->x && s->head.y == node->y;
 }
 
-
-void UpdateVelocityX(Snake* s, int vel)
+void UpdateVelocityX(Snake *s, int vel)
 {
-    if (s->lastXMov == SNAKE_STOPPED)
+    if( s->lastXMov == SNAKE_STOPPED )
     {
         s->xVel = vel;
         s->yVel = SNAKE_STOPPED;
     }
 }
 
-void UpdateVelocityY(Snake* s, int vel)
+void UpdateVelocityY(Snake *s, int vel)
 {
-    if (s->lastYMov == SNAKE_STOPPED)
+    if( s->lastYMov == SNAKE_STOPPED )
     {
         s->xVel = SNAKE_STOPPED;
         s->yVel = vel;

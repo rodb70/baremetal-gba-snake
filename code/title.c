@@ -3,7 +3,7 @@
 #include "drawing.h"
 #include "input.h"
 
-uint8 state = TITLE_PLAYING;
+uint8_t state = TITLE_PLAYING;
 
 int getTitleScreenState()
 {
@@ -18,7 +18,7 @@ void beginTitleScreeen()
 }
 
 
-void handleTitleInput()
+void handleTitleInput(void)
 {
     if (key_curr_state() != key_prev_state())
     {
@@ -29,11 +29,11 @@ void handleTitleInput()
     }
 }
 
-void tickTitleScreen()
+void tickTitleScreen(void)
 {
 }
 
-void drawTitleScreen()
+void drawTitleScreen(void)
 {
 
 }

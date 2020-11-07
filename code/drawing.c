@@ -2,8 +2,8 @@
 
 void drawRect(int left, int top, int right, int bottom, COLOR clr)
 {
-    uint32 width = right - left;
-    uint32 height = bottom - top; //y increases near bottom in GBA land
+    uint32_t width = right - left;
+    uint32_t height = bottom - top; //y increases near bottom in GBA land
 
     for (int y = 0; y < height; ++y)
     {
