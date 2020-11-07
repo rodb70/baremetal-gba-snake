@@ -1,6 +1,7 @@
-#include "my-lib.h"
+#include "game.h"
 
 #include <time.h>
+#include <stdint.h>
 
 uint64_t timer_tick( void )
 {

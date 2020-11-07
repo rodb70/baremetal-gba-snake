@@ -7,6 +7,7 @@
 
 void InitSnake(Snake *snake, int startX, int startY, int maxLen)
 {
+    (void)maxLen;
     snake->head.x = startX;
     snake->head.y = startY;
     snake->length = 1;

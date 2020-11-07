@@ -3,7 +3,8 @@
 #include "drawing.h"
 #include "text.h"
 #include "input.h"
-#include "gba.h"
+#include "hardware.h"
+
 static int state = END_PLAYING;
 static int result = 0;
 void SetMatchResult(int didPlayerWin)

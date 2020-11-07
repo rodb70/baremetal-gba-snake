@@ -1,10 +1,10 @@
-#ifndef INPUT_H
-#define INPUT_H
+/*
+ * input.h
+ *
+ */
 
-uint16_t key_cur;
-uint16_t key_prev;
-
-#define REG_KEYINPUT  (* (volatile uint32_t*) 0x4000130)
+#ifndef HOST_INPUT_H_
+#define HOST_INPUT_H_
 
 #define KEY_A        0x0001
 #define KEY_B        0x0002
@@ -19,12 +19,8 @@ uint16_t key_prev;
 
 #define KEY_MASK     0x03FF
 
-// Polling function
-static inline void key_poll(void)
-{
-    key_prev = key_cur;
-    key_cur = ~REG_KEYINPUT & KEY_MASK;
-}
+extern uint16_t key_cur;
+extern uint16_t key_prev;
 
 // Basic state checks
 static inline uint32_t key_curr_state(void)
@@ -57,4 +53,7 @@ static inline uint32_t key_was_up(uint32_t key)
     return ~key_cur & key;
 }
 
-#endif
+
+
+
+#endif /* HOST_INPUT_H_ */

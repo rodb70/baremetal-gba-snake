@@ -5,9 +5,9 @@ void drawRect(int left, int top, int right, int bottom, COLOR clr)
     uint32_t width = right - left;
     uint32_t height = bottom - top; //y increases near bottom in GBA land
 
-    for (int y = 0; y < height; ++y)
+    for (uint32_t y = 0; y < height; ++y)
     {
-        for (int x = 0; x < width; ++x)
+        for (uint32_t x = 0; x < width; ++x)
         {
             drawPixel(left + x, top + y, clr);
         }

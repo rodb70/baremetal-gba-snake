@@ -2,8 +2,6 @@
 #define GBA_H 1
 #include <stdint.h>
 
-typedef uint16_t COLOR;
-
 #define REG_VCOUNT_ADDR 0x04000006
 #define REG_VCOUNT      (* (volatile uint16_t*) REG_VCOUNT_ADDR)
 

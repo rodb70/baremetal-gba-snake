@@ -1,7 +1,7 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-#include "gba.h"
+#include "hardware.h"
 #include "game.h"
 
 #define SNAKE_LEFT 0

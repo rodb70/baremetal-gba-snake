@@ -2,7 +2,7 @@
 // (don't spend too much time trying and read on).
 // But if you do understand (as a newbie): wow!
 
-#include "gba.h"
+#include "hardware.h"
 #include "game.h"
 #include "title.h"
 #include "text.h"
@@ -17,7 +17,7 @@
 uint8_t AppState = STATE_JUST_LAUNCHED;
 uint8_t TargetState = STATE_TITLE;
 
-int main()
+int main(void)
 {
     HardwareInit();
 
@@ -33,9 +33,11 @@ int main()
             case STATE_TITLE:
                 handleTitleInput();
                 break;
+
             case STATE_GAME:
                 handleGameInput();
                 break;
+
             case STATE_END:
                 handleGameOverInput();
                 break;
@@ -57,6 +59,7 @@ int main()
                 }
             }
                 break;
+
             case STATE_GAME:
             {
                 int gameState = getGameState();
@@ -74,6 +77,7 @@ int main()
                 }
             }
                 break;
+
             case STATE_END:
             {
                 int gameOverState = getGameOverState();

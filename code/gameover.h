@@ -6,9 +6,9 @@
 
 void SetMatchResult(int didPlayerWin);
 
-void beginGameOverScreen();
-void handleGameOverInput();
-int getGameOverState();
+void beginGameOverScreen(void);
+void handleGameOverInput(void);
+int getGameOverState(void);
 
 
 #endif

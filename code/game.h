@@ -1,5 +1,7 @@
 #ifndef GAME_H
 #define GAME_H 1
+#include <stdint.h>
+#include "hardware.h"
 
 #define SCREEN_WIDTH   240
 #define SCREEN_HEIGHT  160
@@ -23,12 +25,14 @@
 #define STATE_WON 1
 #define STATE_LOST 2
 
+typedef uint16_t COLOR;
+
 int getGameState(void);
 int getFinalScore(void);
 void tickAndDrawGame(void);
 void restartGame(void);
 
-void handleGameInput();
+void handleGameInput(void);
 
 uint8_t getCellValue(int x, int y);
 void setCellValue(int x, int y, uint8_t value);
